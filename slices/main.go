@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	a := [3]int{1, 2, 3}
-	b := a[:1]
+	b := a[0:1]
 
 	fmt.Println("a == ", a)
 	fmt.Println("b == ", b)
@@ -14,5 +14,8 @@ func main() {
 
 	fmt.Println(len(b))
 	fmt.Println(cap(b))
+
+	fmt.Println(len(c))
+	fmt.Println(cap(c))
 
 }
