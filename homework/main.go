@@ -19,8 +19,14 @@ var raw = `
   </body>
 </html>`
 
+func visit(n *html.Node, words, pics *int) {
+
+}
+
 func countWordsAndImages(doc *html.Node) (int, int) {
 	var words, pics int
+
+	visit(doc, &words, &pics)
 
 	return words, pics
 }
