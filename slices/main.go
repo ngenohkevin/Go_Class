@@ -8,4 +8,8 @@ func main() {
 
 	fmt.Println("a == ", a)
 	fmt.Println("b == ", b)
+
+	c := b[:2]
+	fmt.Println("c == ", c)
+
 }
