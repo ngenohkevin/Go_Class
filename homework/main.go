@@ -20,7 +20,9 @@ var raw = `
 </html>`
 
 func visit(n *html.Node, words, pics *int) {
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
 
+	}
 }
 
 func countWordsAndImages(doc *html.Node) (int, int) {
