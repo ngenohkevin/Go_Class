@@ -9,7 +9,10 @@ func main() {
 	fmt.Println("a == ", a)
 	fmt.Println("b == ", b)
 
-	c := b[:2]
+	c := b[0:2]
 	fmt.Println("c == ", c)
+
+	fmt.Println(len(b))
+	fmt.Println(cap(b))
 
 }
