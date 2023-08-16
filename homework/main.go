@@ -20,6 +20,8 @@ var raw = `
 </html>`
 
 func visit(n *html.Node, words, pics *int) {
+	// if it's an element node, what tag does it have?
+
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		visit(c, words, pics)
 	}
