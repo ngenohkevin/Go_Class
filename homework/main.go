@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"strings"
 
 	"golang.org/x/net/html"
 )
@@ -19,17 +20,17 @@ var raw = `
   </body>
 </html>`
 
-func visit(n *html.Node, words, pics *int) {
+func visit(n *html.Node, pwords, ppics *int) {
 	// if it's an element node, what tag does it have?
 
 	if n.Type == html.TextNode {
-
+		*pwords += len(strings.Fields(n.Data))
 	} else if n.Type == html.ElementNode && n.Data == "img" {
-
+		*ppics++
 	}
 
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		visit(c, words, pics)
+		visit(c, pwords, ppics)
 	}
 }
 
