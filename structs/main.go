@@ -15,5 +15,9 @@ type Employee struct {
 func main() {
 	var e Employee
 
-	fmt.Printf("%T %[1]v\n", e)
+	e.Name = "Kevin"
+	e.Number = 1
+	e.Hired = time.Now()
+
+	fmt.Printf("%T %+[1]v\n", e)
 }
