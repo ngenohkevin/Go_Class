@@ -13,7 +13,11 @@ type Employee struct {
 }
 
 func main() {
-	var e Employee
+	e := Employee{
+		Name:   "Kevin",
+		Number: 1,
+		Hired:  time.Now(),
+	}
 
 	e.Name = "Kevin"
 	e.Number = 1
