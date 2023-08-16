@@ -22,6 +22,12 @@ var raw = `
 func visit(n *html.Node, words, pics *int) {
 	// if it's an element node, what tag does it have?
 
+	if n.Type == html.TextNode {
+
+	} else if n.Type == html.ElementNode && n.Data == "img" {
+
+	}
+
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		visit(c, words, pics)
 	}
