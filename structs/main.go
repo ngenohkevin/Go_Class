@@ -17,4 +17,9 @@ func main() {
 
 	fmt.Println(string(j))
 	fmt.Printf("%#v\n", r)
+
+	var r2 Response
+
+	_ = json.Unmarshal(j, &r2)
+	fmt.Printf("%#v\n", r2)
 }
