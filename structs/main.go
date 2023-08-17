@@ -21,7 +21,7 @@ func main() {
 	c["Kevin"] = &Employee{
 		Name:   "Kevin",
 		Number: 1,
-		Boss:   c["Lamine"],
+		Boss:   c["Dilan"],
 		Hired:  time.Now(),
 	}
 
