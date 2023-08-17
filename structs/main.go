@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+type album1 struct {
+	title string
+}
+
 func main() {
 
 	var album1 = struct {
@@ -17,7 +21,7 @@ func main() {
 		"The Black album",
 	}
 
-	album1 = album2
+	// album1 = album2
 
 	fmt.Println(album1, album2)
 }
