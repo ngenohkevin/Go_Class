@@ -2,29 +2,21 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
-
-type Employee struct {
-	Name   string
-	Number int
-	Boss   *Employee
-	Hired  time.Time
-}
 
 func main() {
 
-	c := map[string]*Employee{}
-
-	c["Dilan"] = &Employee{"Dilan", 2, nil, time.Now()}
-
-	c["Kevin"] = &Employee{
-		Name:   "Kevin",
-		Number: 1,
-		Boss:   c["Dilan"],
-		Hired:  time.Now(),
+	var album = struct {
+		title  string
+		artist string
+		year   int
+		copies int
+	}{
+		"The White album",
+		"The Beatles",
+		1968,
+		1000000000000,
 	}
 
-	fmt.Printf("%T %+[1]v\n", c["Dilan"])
-	fmt.Printf("%T %+[1]v\n", c["Kevin"])
+	fmt.Println(album)
 }
