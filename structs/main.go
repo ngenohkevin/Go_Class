@@ -8,20 +8,21 @@ type album1 struct {
 	title string
 }
 
+type album2 struct {
+	title string
+}
+
 func main() {
 
-	var album1 = struct {
-		title string
-	}{
+	var a1 = album1{
 		"The White album",
 	}
-	var album2 = struct {
-		title string
-	}{
+	var a2 = album2{
+
 		"The Black album",
 	}
 
-	// album1 = album2
+	a1 = album1(a2)
 
-	fmt.Println(album1, album2)
+	fmt.Println(a1, a2)
 }
