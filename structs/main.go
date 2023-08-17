@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type Response struct {
 	Page  int      `json:"page"`
@@ -10,5 +13,7 @@ type Response struct {
 func main() {
 	r := &Response{Page: 1, Words: []string{"up", "in", "out"}}
 
-	fmt.Printf("%#v\n", r)
+	j, _ := json.Marshal(r)
+
+	fmt.Println(string(j))
 }
