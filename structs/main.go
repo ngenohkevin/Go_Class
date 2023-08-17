@@ -6,19 +6,18 @@ import (
 
 func main() {
 
-	var album = struct {
-		title  string
-		artist string
-		year   int
-		copies int
+	var album1 = struct {
+		title string
 	}{
 		"The White album",
-		"The Beatles",
-		1968,
-		1000000000000,
+	}
+	var album2 = struct {
+		title string
+	}{
+		"The Black album",
 	}
 
-	var pAlbum = &album
+	album1 = album2
 
-	fmt.Println(album, pAlbum)
+	fmt.Println(album1, album2)
 }
