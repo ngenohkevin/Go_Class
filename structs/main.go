@@ -18,5 +18,7 @@ func main() {
 		1000000000000,
 	}
 
-	fmt.Println(album)
+	var pAlbum = &album
+
+	fmt.Println(pAlbum)
 }
