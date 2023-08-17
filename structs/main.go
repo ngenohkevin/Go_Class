@@ -11,7 +11,7 @@ type Response struct {
 }
 
 func main() {
-	r := &Response{Page: 1, Words: []string{"up", "in", "out"}}
+	r := Response{Page: 1}
 
 	j, _ := json.Marshal(r)
 
