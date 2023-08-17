@@ -1,28 +1,14 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type album1 struct {
-	title string
-}
-
-type album2 struct {
-	title string
+type Response struct {
+	Page  int      `json:"page"`
+	Words []string `json:"words,omitempty"`
 }
 
 func main() {
+	r := &Response{Page: 1, Words: []string{"up", "in", "out"}}
 
-	var a1 = album1{
-		"The White album",
-	}
-	var a2 = album2{
-
-		"The Black album",
-	}
-
-	a1 = album1(a2)
-
-	fmt.Println(a1, a2)
+	fmt.Printf("%#v\n", r)
 }
