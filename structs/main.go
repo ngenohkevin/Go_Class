@@ -16,4 +16,5 @@ func main() {
 	j, _ := json.Marshal(r)
 
 	fmt.Println(string(j))
+	fmt.Printf("%#v\n", r)
 }
