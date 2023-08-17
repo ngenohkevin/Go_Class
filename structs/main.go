@@ -20,5 +20,5 @@ func main() {
 
 	var pAlbum = &album
 
-	fmt.Println(pAlbum)
+	fmt.Println(album, pAlbum)
 }
