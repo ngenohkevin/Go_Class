@@ -11,7 +11,7 @@ const url = "https://jsonplaceholder.typicode.com/"
 
 func main() {
 
-	resp, err := http.Get(url + "/todos/1")
+	resp, err := http.Get(url + "/todos/6")
 
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
