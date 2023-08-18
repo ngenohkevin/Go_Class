@@ -7,7 +7,11 @@ func main() {
 	a := [][]byte{}
 
 	for _, item := range items {
-		a = append(a, item[:])
+
+		i := make([]byte, len(item))
+		copy(i, item[:])
+
+		a = append(a, i)
 	}
 
 	fmt.Println(items)
