@@ -1,6 +1,9 @@
 package main
 
 import (
+	"encoding/json"
+	"html/template"
+	"io"
 	"log"
 	"net/http"
 )
@@ -31,6 +34,25 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	var item todo
+
+	err = json.Unmarshal(body, &item)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tmpl := template.New("mine")
+	tmpl.Parse(form)
+	tmpl.Execute(w, item)
 
 }
 
