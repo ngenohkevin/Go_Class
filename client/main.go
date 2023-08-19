@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -8,6 +9,12 @@ import (
 )
 
 const url = "https://jsonplaceholder.typicode.com"
+
+type todo struct {
+	ID        int    `json:"id"`
+	Title     string `json:"title"`
+	Completed bool   `json:"completed"`
+}
 
 func main() {
 	resp, err := http.Get(url + "/todos/1")
@@ -25,6 +32,15 @@ func main() {
 			os.Exit(1)
 		}
 
-		fmt.Println(string(body))
+		var item todo
+
+		err = json.Unmarshal(body, &item)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
+		fmt.Printf("%#v\n", item)
+
 	}
 }
