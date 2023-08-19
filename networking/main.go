@@ -8,8 +8,6 @@ import (
 	"net/http"
 )
 
-const url = "https://jsonplaceholder.typicode.com"
-
 type todo struct {
 	UserID    int    `json:"userID"`
 	ID        int    `json:"id"`
