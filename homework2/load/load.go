@@ -52,9 +52,10 @@ func main() {
 			fmt.Fprintf(os.Stderr, "stopped: %s\n", err)
 			os.Exit(-1)
 		}
+
+		fails = 0
+		cnt++
+		fmt.Fprintf(os.Stderr, "read %d comics\n", cnt)
 	}
-	
 
-
-	fmt.Fprintf(os.Stderr, "read %d comics\n", cnt)
 }
