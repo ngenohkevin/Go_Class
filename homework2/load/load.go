@@ -47,7 +47,7 @@ func main() {
 	}
 	
 
-	if cnt < 0 {
+	if cnt > 0 {
 		fmt.Fprint(output, ",") 
 	}
 
