@@ -41,17 +41,20 @@ func main() {
 	for i := 1; fails < 2; i++ {
 		data  = getOne(); data == nil {
 			fail++
-
 			continue
+		}
+		if cnt > 0 {
+			fmt.Fprint(output, ",") 
+		}
+	
+		_, err = io.Copy(output, bytes.NewBuffer(data))
+		if err != nil{
+			fmt.Fprintf(os.Stderr, "stopped: %s\n", err)
+			os.Exit(-1)
 		}
 	}
 	
 
-	if cnt > 0 {
-		fmt.Fprint(output, ",") 
-	}
-
-	_, err = io.Copy(output, bytes.NewBuffer(data))
 
 	fmt.Fprintf(os.Stderr, "read %d comics\n", cnt)
 }
