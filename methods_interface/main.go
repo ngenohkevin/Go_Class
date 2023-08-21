@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -16,4 +17,14 @@ func (is IntSlice) String() string {
 	}
 
 	return "[" + strings.Join(strs, ";") + "]"
+}
+
+func main() {
+	var v IntSlice = []int{1, 2, 3}
+
+	for i, x := range v {
+		fmt.Printf("%d: %d\n", i, x)
+	}
+
+	fmt.Printf("%T %[1]v\n", v)
 }
