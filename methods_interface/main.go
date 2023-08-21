@@ -15,5 +15,5 @@ func (is IntSlice) String() string {
 		strs = append(strs, strconv.Itoa(v))
 	}
 
-	return "[" + strings.Join
+	return "[" + strings.Join(strs, ";") + "]"
 }
