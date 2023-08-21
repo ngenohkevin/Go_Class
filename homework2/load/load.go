@@ -4,11 +4,33 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 )
 
 func getOne(i int) []byte {
 
+	url := fmt.Sprintf("https://xkcd.com/%d/info.0.json", i)
+	resp, err := http.Get(url)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "can't read: %s\n", err)
+		os.Exit(-1)
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		fmt.Fprintf(os.Stderr, "skipping %d: got %d\n", i, resp.StatusCode)
+		return nil
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "invalid body: %s\n", err)
+		os.Exit(-1)
+	}
+
+	return body
 }
 
 func main() {
