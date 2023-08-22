@@ -19,5 +19,8 @@ type PairWithLength struct {
 func main() {
 	p := Pair{"/usr", "Oxfdfe"}
 
+	pl := PairWithLength{Pair{"/usr/lib", "Oxdead"}, 133}
+
 	fmt.Println(p)
+	fmt.Println(pl)
 }
