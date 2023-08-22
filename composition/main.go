@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"path/filepath"
+)
 
 type Pair struct {
 	Path string
@@ -16,6 +19,13 @@ type PairWithLength struct {
 	Length int
 }
 
+func (p PairWithLength) String() string {
+	return fmt.Sprintf("Hash of %s is %s, length %d", p.Path, p.Hash, p.Length)
+}
+
+func Filename(p Pair) string {
+	return filepath.Base(p.Path)
+}
 func main() {
 	p := Pair{"/usr", "Oxfdfe"}
 
@@ -23,4 +33,5 @@ func main() {
 
 	fmt.Println(p)
 	fmt.Println(pl)
+	fmt.Println(Filename(p))
 }
