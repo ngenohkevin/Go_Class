@@ -23,9 +23,14 @@ func (p PairWithLength) String() string {
 	return fmt.Sprintf("Hash of %s is %s, length %d", p.Path, p.Hash, p.Length)
 }
 
-func Filename(p Pair) string {
+func (p Pair) Filename() string {
 	return filepath.Base(p.Path)
 }
+
+type Filenamer interface {
+	Filename() string
+}
+
 func main() {
 	p := Pair{"/usr", "Oxfdfe"}
 
@@ -33,5 +38,5 @@ func main() {
 
 	fmt.Println(p)
 	fmt.Println(pl)
-	fmt.Println(Filename(p))
+	fmt.Println(p.Filename())
 }
