@@ -7,6 +7,10 @@ type Organ struct {
 
 type Organs []Organ
 
+func (s Organs) Len() int {
+	return len(s)
+}
+
 func main() {
 
 }
