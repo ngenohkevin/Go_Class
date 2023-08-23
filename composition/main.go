@@ -16,6 +16,13 @@ func (s Organs) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
+type ByName struct {
+	Organs
+}
+type ByWeight struct {
+	Organs
+}
+
 func main() {
 	s := []Organ{{"brain", 1340}, {"liver", 1494}, {"spleen", 162}, {"pancreas", 131}, {"heart", 290}}
 
