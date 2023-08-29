@@ -11,7 +11,7 @@ func (e errFoo) Error() string {
 	return fmt.Sprintf("%s: %s", e.path, e.err)
 }
 
-func XYZ(a int) *errFoo {
+func XYZ(a int) error {
 	return nil
 }
 
