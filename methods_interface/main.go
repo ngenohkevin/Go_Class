@@ -17,4 +17,10 @@ func XYZ(a int) *errFoo {
 
 func main() {
 	var err error = XYZ(1) //BAD: interface gets a nil concrete ptr
+
+	if err != nil {
+		fmt.Println("oops")
+	} else {
+
+	}
 }
