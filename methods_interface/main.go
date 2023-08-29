@@ -1,30 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-	"strings"
-)
+import "fmt"
 
-type IntSlice []int
+type errFoo struct {
+	err  error
+	path string
+}
 
-func (is IntSlice) String() string {
+func (e errFoo) Error() string {
+	return fmt.Sprintf("%s: %s", e.path, e.err)
+}
 
-	var strs []string
-
-	for _, v := range is {
-		strs = append(strs, strconv.Itoa(v))
-	}
-
-	return "[" + strings.Join(strs, ";") + "]"
+func XYZ(a int) *errFoo {
+	return nil
 }
 
 func main() {
-	var v IntSlice = []int{1, 2, 3}
-
-	for i, x := range v {
-		fmt.Printf("%d: %d\n", i, x)
-	}
-
-	fmt.Printf("%T %[1]v\n", v)
+	var err error = XYZ(1) //BAD: interface gets a nil concrete ptr
 }
