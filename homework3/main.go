@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type dollars float32
@@ -29,6 +30,15 @@ func (db database) add(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, msg, http.StatusBadRequest)
 		return
 	}
+
+	p, err := strconv.ParseFloat(price, 32)
+	if err != nil {
+		msg := fmt.Sprintf("Invalid price: %q", price)
+		http.Error(w, msg, http.StatusBadRequest)
+		return
+	}
+
+	db[item] = dollars(p)
 }
 
 func main() {
