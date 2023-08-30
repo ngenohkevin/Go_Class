@@ -84,7 +84,8 @@ func (db database) drop(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "item %s has price %s\n", item, db[item])
+	delete(db, item)
+	fmt.Fprintf(w, "dropped %s\n", item)
 }
 
 func main() {
@@ -97,6 +98,7 @@ func main() {
 	http.HandleFunc("/create", db.add)
 	http.HandleFunc("/update", db.update)
 	http.HandleFunc("/read", db.fetch)
+	http.HandleFunc("/delete", db.drop)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
