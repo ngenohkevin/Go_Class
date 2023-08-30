@@ -48,7 +48,7 @@ func (db database) Update(w http.ResponseWriter, req *http.Request) {
 
 	if _, ok := db[item]; !ok {
 		msg := fmt.Sprintf("no such item: %q", item)
-		http.Error(w, msg, http.StatusBadRequest)
+		http.Error(w, msg, http.StatusNotFound)
 		return
 	}
 
