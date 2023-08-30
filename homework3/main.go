@@ -39,6 +39,8 @@ func (db database) add(w http.ResponseWriter, req *http.Request) {
 	}
 
 	db[item] = dollars(p)
+
+	fmt.Fprintf(w, "added %s with price %s\n", item, db[item])
 }
 
 func main() {
@@ -48,6 +50,7 @@ func main() {
 	}
 
 	http.HandleFunc("/list", db.list)
+	http.HandleFunc("/create", db.add)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
