@@ -75,6 +75,17 @@ func (db database) fetch(w http.ResponseWriter, req *http.Request) {
 
 	fmt.Fprintf(w, "item %s has price %s\n", item, db[item])
 }
+func (db database) drop(w http.ResponseWriter, req *http.Request) {
+	item := req.URL.Query().Get("item")
+
+	if _, ok := db[item]; !ok {
+		msg := fmt.Sprintf("no such item: %q", item)
+		http.Error(w, msg, http.StatusNotFound)
+		return
+	}
+
+	fmt.Fprintf(w, "item %s has price %s\n", item, db[item])
+}
 
 func main() {
 	db := database{
