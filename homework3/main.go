@@ -42,7 +42,7 @@ func (db database) add(w http.ResponseWriter, req *http.Request) {
 
 	fmt.Fprintf(w, "added %s with price %s\n", item, db[item])
 }
-func (db database) Update(w http.ResponseWriter, req *http.Request) {
+func (db database) update(w http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	price := req.URL.Query().Get("price")
 
@@ -72,6 +72,7 @@ func main() {
 
 	http.HandleFunc("/list", db.list)
 	http.HandleFunc("/create", db.add)
+	http.HandleFunc("/update", db.update)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
