@@ -12,6 +12,10 @@ func (d dollars) String() string {
 	return fmt.Sprintf("$%.2f", d)
 }
 
+func (db database) list(w http.ResponseWriter, req *http.Request) {
+
+}
+
 type database map[string]dollars
 
 func main() {
