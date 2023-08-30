@@ -61,7 +61,7 @@ func (db database) Update(w http.ResponseWriter, req *http.Request) {
 
 	db[item] = dollars(p)
 
-	fmt.Fprintf(w, "added %s with price %s\n", item, db[item])
+	fmt.Fprintf(w, "new price %s for price %s\n", db[item], item)
 }
 
 func main() {
