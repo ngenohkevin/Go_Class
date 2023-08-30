@@ -47,7 +47,7 @@ func (db database) Update(w http.ResponseWriter, req *http.Request) {
 	price := req.URL.Query().Get("price")
 
 	if _, ok := db[item]; !ok {
-		msg := fmt.Sprintf("duplicate item: %q", item)
+		msg := fmt.Sprintf("no such item: %q", item)
 		http.Error(w, msg, http.StatusBadRequest)
 		return
 	}
