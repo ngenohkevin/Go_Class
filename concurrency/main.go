@@ -7,3 +7,7 @@ type result struct {
 	err     error
 	latency time.Duration
 }
+
+func get(url, ch chan result) {
+
+}
