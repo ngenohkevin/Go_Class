@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"net/http"
+	"time"
+)
 
 type result struct {
 	url     string
@@ -9,5 +12,11 @@ type result struct {
 }
 
 func get(url, ch chan<- result) {
+	start := time.Now()
 
+	if resp, err := http.Get(url); err != nil {
+
+	} else {
+		resp.Body.Close()
+	}
 }
