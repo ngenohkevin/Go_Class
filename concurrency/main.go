@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-)
-
 // type result struct {
 // 	url     string
 // 	err     error
@@ -49,12 +43,3 @@ import (
 // 		}
 // 	}
 // }
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1> You got %d</h1>", nextID)
-}
-
-func main() {
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
