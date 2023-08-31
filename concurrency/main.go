@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // type result struct {
 // 	url     string
 // 	err     error
@@ -67,7 +69,18 @@ func sieve(limit int) {
 	go generator(limit, ch)
 
 	for {
+		prime, ok := <-ch
 
+		if !ok {
+			break
+		}
+		ch1 := make(chan int)
+
+		go filter(ch, ch1, prime)
+
+		ch = ch1
+
+		fmt.Print(prime, " ")
 	}
 }
 func main() {
