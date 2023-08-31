@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"time"
 )
@@ -29,5 +30,15 @@ func main() {
 
 	for _, url := range list {
 		go get(url, results)
+	}
+
+	for range list {
+		r := <-results
+
+		if r.err != nil {
+			log.Printf("%-20s %s\n", r.url, r.err)
+		} else {
+			log.Printf("%-20s %s\n", r.url, r.latency)
+		}
 	}
 }
