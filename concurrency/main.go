@@ -26,7 +26,14 @@ func get(url string, ch chan<- result) {
 
 func main() {
 	results := make(chan result)
-	list := []string{}
+	list := []string{
+		"https://amazon.com",
+		"https://www.arnoderrymovers.co.ke",
+		"https://google.com",
+		"https://github.com",
+		"https://nytimes.com",
+		"http://wsj.com",
+	}
 
 	for _, url := range list {
 		go get(url, results)
