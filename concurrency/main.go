@@ -8,6 +8,6 @@ type result struct {
 	latency time.Duration
 }
 
-func get(url, ch chan result) {
+func get(url, ch chan<- result) {
 
 }
