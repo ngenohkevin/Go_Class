@@ -1,89 +1,93 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+	"time"
+)
 
-// type result struct {
-// 	url     string
-// 	err     error
-// 	latency time.Duration
+type result struct {
+	url     string
+	err     error
+	latency time.Duration
+}
+
+func get(url string, ch chan<- result) {
+	start := time.Now()
+
+	if resp, err := http.Get(url); err != nil {
+		ch <- result{url, err, 0}
+	} else {
+		t := time.Since(start).Round(time.Millisecond)
+		ch <- result{url, nil, t}
+		resp.Body.Close()
+	}
+}
+
+func main() {
+	results := make(chan result)
+	list := []string{
+		"https://amazon.com",
+		"https://www.arnoderrymovers.co.ke",
+		"https://google.com",
+		"https://github.com",
+		"https://nytimes.com",
+		"http://wsj.com",
+	}
+
+	for _, url := range list {
+		go get(url, results)
+	}
+
+	for range list {
+		r := <-results
+
+		if r.err != nil {
+			log.Printf("%-20s %s\n", r.url, r.err)
+		} else {
+			log.Printf("%-20s %s\n", r.url, r.latency)
+		}
+	}
+}
+
+// func generator(limit int, ch chan<- int) {
+// 	for i := 2; i < limit; i++ {
+// 		ch <- i
+// 	}
+// 	close(ch)
 // }
 
-// func get(url string, ch chan<- result) {
-// 	start := time.Now()
-
-// 	if resp, err := http.Get(url); err != nil {
-// 		ch <- result{url, err, 0}
-// 	} else {
-// 		t := time.Since(start).Round(time.Millisecond)
-// 		ch <- result{url, nil, t}
-// 		resp.Body.Close()
-// 	}
-// }
-
-// func main() {
-// 	results := make(chan result)
-// 	list := []string{
-// 		"https://amazon.com",
-// 		"https://www.arnoderrymovers.co.ke",
-// 		"https://google.com",
-// 		"https://github.com",
-// 		"https://nytimes.com",
-// 		"http://wsj.com",
-// 	}
-
-// 	for _, url := range list {
-// 		go get(url, results)
-// 	}
-
-// 	for range list {
-// 		r := <-results
-
-// 		if r.err != nil {
-// 			log.Printf("%-20s %s\n", r.url, r.err)
-// 		} else {
-// 			log.Printf("%-20s %s\n", r.url, r.latency)
+// func filter(src <-chan int, dst chan<- int, prime int) {
+// 	for i := range src {
+// 		if i%prime != 0 {
+// 			dst <- i
 // 		}
 // 	}
+
+// 	close(dst)
 // }
 
-func generator(limit int, ch chan<- int) {
-	for i := 2; i < limit; i++ {
-		ch <- i
-	}
-	close(ch)
-}
+// func sieve(limit int) {
+// 	ch := make(chan int)
 
-func filter(src <-chan int, dst chan<- int, prime int) {
-	for i := range src {
-		if i%prime != 0 {
-			dst <- i
-		}
-	}
+// 	go generator(limit, ch)
 
-	close(dst)
-}
+// 	for {
+// 		prime, ok := <-ch
 
-func sieve(limit int) {
-	ch := make(chan int)
+// 		if !ok {
+// 			break
+// 		}
+// 		ch1 := make(chan int)
 
-	go generator(limit, ch)
+// 		go filter(ch, ch1, prime)
 
-	for {
-		prime, ok := <-ch
+// 		ch = ch1
 
-		if !ok {
-			break
-		}
-		ch1 := make(chan int)
-
-		go filter(ch, ch1, prime)
-
-		ch = ch1
-
-		fmt.Print(prime, " ")
-	}
-	fmt.Println()
-}
-func main() {
-	sieve(100)
-}
+// 		fmt.Print(prime, " ")
+// 	}
+// 	fmt.Println()
+// }
+// func main() {
+// 	sieve(100)
+// }
