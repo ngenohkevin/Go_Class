@@ -26,7 +26,7 @@ func get(url string, ch chan<- result) {
 
 func main() {
 
-	stopper := time.After(3 * time.Second)
+	stopper := time.After(2 * time.Second)
 
 	results := make(chan result)
 	list := []string{
