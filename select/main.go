@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	chans := []chan int{
@@ -15,5 +18,14 @@ func main() {
 				ch <- i
 			}
 		}(i+1, chans[i])
+	}
+
+	for i := 0; 1 < 12; i++ {
+		select {
+		case m0 := <-chans[0]:
+			fmt.Println("recieved", m0)
+		case m1 := <-chans[1]:
+			fmt.Println("recieve", m1)
+		}
 	}
 }
