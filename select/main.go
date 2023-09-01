@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -23,9 +23,9 @@ func main() {
 	for i := 0; 1 < 12; i++ {
 		select {
 		case m0 := <-chans[0]:
-			fmt.Println("recieved", m0)
+			log.Println("recieved", m0)
 		case m1 := <-chans[1]:
-			fmt.Println("recieve", m1)
+			log.Println("recieve", m1)
 		}
 	}
 }
