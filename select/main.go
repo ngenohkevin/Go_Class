@@ -1,5 +1,7 @@
 package main
 
+import "time"
+
 func main() {
 	chans := []chan int{
 		make(chan int),
@@ -8,7 +10,9 @@ func main() {
 
 	for i := range chans {
 		go func(i int, ch chan<- int) {
-
+			for {
+				time.Sleep(time.Duration(i) * time.Second)
+			}
 		}(i+1, chans[i])
 	}
 }
