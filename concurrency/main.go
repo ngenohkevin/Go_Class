@@ -26,7 +26,7 @@ func get(url string, ch chan<- result) {
 
 func main() {
 
-	stopper := time.After(2 * time.Second)
+	stopper := time.After(4 * time.Second)
 
 	results := make(chan result)
 	list := []string{
@@ -51,8 +51,8 @@ func main() {
 			} else {
 				log.Printf("%-20s %s\n", r.url, r.latency)
 			}
-		case <-stopper:
-			log.Fatal("timeout")
+		case t := <-stopper:
+			log.Fatalf("timeout %s", t)
 		}
 	}
 }
