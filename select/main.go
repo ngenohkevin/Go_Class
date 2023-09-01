@@ -12,6 +12,7 @@ func main() {
 		go func(i int, ch chan<- int) {
 			for {
 				time.Sleep(time.Duration(i) * time.Second)
+				ch <- i
 			}
 		}(i+1, chans[i])
 	}
