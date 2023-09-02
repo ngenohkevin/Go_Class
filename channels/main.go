@@ -8,4 +8,9 @@ func main() {
 	ch <- 1
 	b, ok := <-ch
 	fmt.Println(b, ok)
+
+	close(ch)
+
+	c, ok := <-ch
+	fmt.Println(c, ok)
 }
