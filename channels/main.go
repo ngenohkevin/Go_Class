@@ -11,6 +11,6 @@ func main() {
 
 	close(ch)
 
-	c, ok := <-ch
+	c, ok := <-ch //he
 	fmt.Println(c, ok)
 }
