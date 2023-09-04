@@ -23,4 +23,9 @@ func main() {
 	}
 
 	time.Sleep(1 * time.Second) //all goroutines started
+
+	// copy quickly
+	for i := range vs {
+		vs[i] = *<-ch
+	}
 }
