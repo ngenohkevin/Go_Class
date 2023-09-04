@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type T struct {
 	i byte
@@ -28,5 +31,8 @@ func main() {
 	for i := range vs {
 		vs[i] = *<-ch
 	}
-	//
+	//print later
+	for _, v := range vs {
+		fmt.Println(v)
+	}
 }
