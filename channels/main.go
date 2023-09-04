@@ -28,4 +28,5 @@ func main() {
 	for i := range vs {
 		vs[i] = *<-ch
 	}
+	//
 }
