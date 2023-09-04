@@ -19,7 +19,7 @@ func send(i int, ch chan<- *T) {
 
 func main() {
 	vs := make([]T, 5)
-	ch := make(chan *T)
+	ch := make(chan *T, 5)
 
 	for i := range vs {
 		go send(i, ch)
