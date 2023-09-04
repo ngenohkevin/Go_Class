@@ -1,5 +1,7 @@
 package main
 
+import "time"
+
 type T struct {
 	i byte
 	b bool
@@ -19,4 +21,6 @@ func main() {
 	for i := range vs {
 		go send(i, ch)
 	}
+
+	time.Sleep(1 * time.Second) //all goroutines started
 }
