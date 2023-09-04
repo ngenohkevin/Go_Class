@@ -1,16 +1,22 @@
 package main
 
-import "fmt"
+type T struct {
+	i byte
+	b bool
+}
+
+func send(i int, ch chan<- *T) {
+	t := &T{i: byte(i)}
+	ch <- t
+
+	t.b = true //Unsafe at any speed
+}
 
 func main() {
-	ch := make(chan int)
+	vs := make([]T, 5)
+	ch := make(chan *T)
 
-	ch <- 1
-	b, ok := <-ch
-	fmt.Println(b, ok)
-
-	close(ch)
-
-	c, ok := <-ch //
-	fmt.Println(c, ok)
+	for i := range vs {
+		go send(i, ch)
+	}
 }
